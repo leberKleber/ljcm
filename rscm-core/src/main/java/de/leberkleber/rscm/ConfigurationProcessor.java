@@ -1,19 +1,28 @@
 package de.leberkleber.rscm;
 
-import de.leberkleber.rscm.exception.NoResponsibleParserFound;
+import de.leberkleber.rscm.exception.NoResponsibleParserFoundException;
+import de.leberkleber.rscm.exception.UnableToSetObjectValueException;
 import de.leberkleber.rscm.parser.ConfigurationParser;
 
 import java.lang.reflect.Field;
 import java.text.MessageFormat;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class ConfigurationProcessor {
+    private static final Logger LOGGER = Logger.getLogger(ConfigurationProcessor.class.getName());
     private Properties configurations;
     private Map<String, ConfigurationParser> configurationParser;
 
 
-    ConfigurationProcessor(Properties configurations, Map<String, ConfigurationParser> configurationParser) {
+    protected ConfigurationProcessor(Properties configurations, Map<String, ConfigurationParser> configurationParser) {
+        if(configurations == null) {
+            throw new NullPointerException("configurations must not be null");
+        }
+        if(configurationParser == null) {
+            throw new NullPointerException("configurationParser must not be null");
+        }
         this.configurations = configurations;
         this.configurationParser = configurationParser;
     }
@@ -33,12 +42,16 @@ public class ConfigurationProcessor {
 
                     Object parsedConfiguration = parseConfiguration(targetType, sourceConfiguration);
                     if (parsedConfiguration != null) {
-                        set(configurationInstance, configurationProperty.getName(), parsedConfiguration);
+                        setObjValue(configurationInstance, configurationProperty.getName(), parsedConfiguration);
+                        continue;
                     }
                 }
 
                 if (!Configuration.DEFAULT_VALUE.equals(configuration.defaultValue())) {
-                    set(configurationInstance, configurationProperty.getName(), configuration.defaultValue());
+                    LOGGER.finest(MessageFormat.format("Using annotated default value for '{0}'", configuration.value()));
+                    setObjValue(configurationInstance, configurationProperty.getName(), configuration.defaultValue());
+                } else {
+                    LOGGER.warning(MessageFormat.format("No configuration found for '{0}'", configuration.value()));
                 }
             }
         }
@@ -49,7 +62,14 @@ public class ConfigurationProcessor {
 
     private Object parseConfiguration(String targetType, String value) {
         ConfigurationParser responsibleParser = findResponsibleConfigurationParser(targetType);
-        return responsibleParser.parseValue(value);
+        Object parsedValue = responsibleParser.parseValue(value);
+
+        LOGGER.finest(MessageFormat.format("parsed '{0}' to '{1}' with {3}",
+                value,
+                parsedValue,
+                responsibleParser.getClass().getTypeName()));
+
+        return parsedValue;
     }
 
 
@@ -60,24 +80,29 @@ public class ConfigurationProcessor {
         }
 
         String msg = MessageFormat.format("No responsible parser found for type {0}", targetType);
-        throw new NoResponsibleParserFound(msg);
+        throw new NoResponsibleParserFoundException(msg);
     }
 
 
-    private boolean set(Object object, String fieldName, Object fieldValue) {
+    private void setObjValue(Object object, String fieldName, Object fieldValue) {
         Class<?> clazz = object.getClass();
         while (clazz != null) {
             try {
                 Field field = clazz.getDeclaredField(fieldName);
                 field.setAccessible(true);
                 field.set(object, fieldValue);
-                return true;
+                LOGGER.finest(MessageFormat.format("Set '{0}'>'{1}' to '{2}'",
+                        object.getClass().getTypeName(),
+                        fieldName,
+                        fieldValue));
             } catch (NoSuchFieldException e) {
                 clazz = clazz.getSuperclass();
             } catch (Exception e) {
-                throw new IllegalStateException(e);
+                String msg = MessageFormat.format("Unable to set field {0} at {1} cause: ",
+                        fieldName,
+                        object.getClass().getTypeName());
+                throw new UnableToSetObjectValueException(msg, e);
             }
         }
-        return false;
     }
 }

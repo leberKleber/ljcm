@@ -1,7 +1,7 @@
-package de.leberkleber.common.rscm;
+package de.leberkleber.rscm;
 
-import de.leberkleber.common.rscm.loader.ConfigurationLoader;
-import de.leberkleber.common.rscm.parser.ConfigurationParser;
+import de.leberkleber.rscm.loader.ConfigurationLoader;
+import de.leberkleber.rscm.parser.ConfigurationParser;
 
 import java.util.*;
 

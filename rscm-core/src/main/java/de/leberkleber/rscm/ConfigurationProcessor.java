@@ -1,7 +1,7 @@
-package de.leberkleber.common.rscm;
+package de.leberkleber.rscm;
 
-import de.leberkleber.common.rscm.exception.NoResponsibleParserFound;
-import de.leberkleber.common.rscm.parser.ConfigurationParser;
+import de.leberkleber.rscm.exception.NoResponsibleParserFound;
+import de.leberkleber.rscm.parser.ConfigurationParser;
 
 import java.lang.reflect.Field;
 import java.text.MessageFormat;

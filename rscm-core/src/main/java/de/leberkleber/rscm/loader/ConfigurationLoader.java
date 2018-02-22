@@ -1,4 +1,4 @@
-package de.leberkleber.common.rscm.loader;
+package de.leberkleber.rscm.loader;
 
 import java.util.Map;
 

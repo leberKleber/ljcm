@@ -1,4 +1,4 @@
-package de.leberkleber.common.rscm;
+package de.leberkleber.rscm;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

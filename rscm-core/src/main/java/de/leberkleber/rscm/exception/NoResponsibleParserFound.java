@@ -1,4 +1,4 @@
-package de.leberkleber.common.rscm.exception;
+package de.leberkleber.rscm.exception;
 
 public class NoResponsibleParserFound extends RuntimeException {
     public NoResponsibleParserFound() {

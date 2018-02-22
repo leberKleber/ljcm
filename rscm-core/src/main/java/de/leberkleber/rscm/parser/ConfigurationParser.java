@@ -1,4 +1,4 @@
-package de.leberkleber.common.rscm.parser;
+package de.leberkleber.rscm.parser;
 
 import java.util.Set;
 

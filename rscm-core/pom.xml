@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>de.leberkleber.rscm</groupId>
-        <artifactId>all</artifactId>
+        <artifactId>parent</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>core</artifactId>
+    <artifactId>rscm-core</artifactId>
     <packaging>jar</packaging>
 
     <name>Really Small Configuration Management - core</name>

@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.leberkleber.rscm</groupId>
-    <artifactId>all</artifactId>
+    <artifactId>parent</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Really Small Configuration Management</name>
 
     <modules>
-        <module>rscm</module>
+        <module>rscm-core</module>
     </modules>
 
     <build>

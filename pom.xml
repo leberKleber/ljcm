@@ -9,7 +9,7 @@
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Real Small Configuration Management</name>
+    <name>Really Small Configuration Management</name>
 
     <modules>
         <module>rscm</module>

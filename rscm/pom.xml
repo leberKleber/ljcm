@@ -10,7 +10,8 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>rscm</artifactId>
+    <artifactId>core</artifactId>
     <packaging>jar</packaging>
-    <name>Real Small Configuration Management</name>
+
+    <name>Really Small Configuration Management - core</name>
 </project>

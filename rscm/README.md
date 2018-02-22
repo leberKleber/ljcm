@@ -1,2 +1,2 @@
-# rsmc
+# rscm
 Real Small Configuration Management

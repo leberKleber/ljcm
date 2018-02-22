@@ -27,7 +27,7 @@ public final class ConfigurationProcessorBuilder {
 
 
     public ConfigurationProcessor build() {
-        Map<String, String> configurations = configurationLoader.loadConfigurations();
+        Properties configurations = configurationLoader.loadConfigurations();
         Map<String, ConfigurationParser> mappedConfigurationParsers = new HashMap<>();
 
         for (ConfigurationParser configurationParser : configurationParsers) {

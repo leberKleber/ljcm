@@ -1,7 +1,7 @@
 package de.leberkleber.rscm.loader;
 
-import java.util.Map;
+import java.util.Properties;
 
 public interface ConfigurationLoader {
-    Map<String, String> loadConfigurations();
+    Properties loadConfigurations();
 }

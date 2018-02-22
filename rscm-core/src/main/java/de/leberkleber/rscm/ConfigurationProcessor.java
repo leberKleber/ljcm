@@ -6,13 +6,14 @@ import de.leberkleber.rscm.parser.ConfigurationParser;
 import java.lang.reflect.Field;
 import java.text.MessageFormat;
 import java.util.Map;
+import java.util.Properties;
 
 public class ConfigurationProcessor {
-    private Map<String, String> configurations;
+    private Properties configurations;
     private Map<String, ConfigurationParser> configurationParser;
 
 
-    ConfigurationProcessor(Map<String, String> configurations, Map<String, ConfigurationParser> configurationParser) {
+    ConfigurationProcessor(Properties configurations, Map<String, ConfigurationParser> configurationParser) {
         this.configurations = configurations;
         this.configurationParser = configurationParser;
     }
@@ -25,17 +26,19 @@ public class ConfigurationProcessor {
         for (Field configurationProperty : configurationProperties) {
             Configuration configuration = configurationProperty.getAnnotation(Configuration.class);
 
-            if(configuration != null) {
-                String targetType = configurationProperty.getType().getName();
-                String sourceConfiguration = configurations.get(configuration.value());
-                Object parsedConfiguration = parseConfiguration(targetType, sourceConfiguration);
+            if (configuration != null) {
+                if (configurations.contains(configuration.value())) {
+                    String sourceConfiguration = configurations.getProperty(configuration.value());
+                    String targetType = configurationProperty.getType().getName();
 
-                if(parsedConfiguration != null) {
-                    set(configurationInstance, configurationProperty.getName(), parsedConfiguration);
-                } else {
-                    if(!Configuration.DEFAULT_VALUE.equals(configuration.defaultValue())) {
-                        set(configurationInstance, configurationProperty.getName(), configuration.defaultValue());
+                    Object parsedConfiguration = parseConfiguration(targetType, sourceConfiguration);
+                    if (parsedConfiguration != null) {
+                        set(configurationInstance, configurationProperty.getName(), parsedConfiguration);
                     }
+                }
+
+                if (!Configuration.DEFAULT_VALUE.equals(configuration.defaultValue())) {
+                    set(configurationInstance, configurationProperty.getName(), configuration.defaultValue());
                 }
             }
         }

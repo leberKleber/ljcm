@@ -13,18 +13,18 @@ import java.util.logging.Logger;
 public class ConfigurationProcessor {
     private static final Logger LOGGER = Logger.getLogger(ConfigurationProcessor.class.getName());
     private Properties configurations;
-    private Map<String, ConfigurationParser> configurationParser;
+    private Map<String, ConfigurationParser> configurationParsers;
 
 
-    protected ConfigurationProcessor(Properties configurations, Map<String, ConfigurationParser> configurationParser) {
+    protected ConfigurationProcessor(Properties configurations, Map<String, ConfigurationParser> configurationParsers) {
         if(configurations == null) {
             throw new NullPointerException("configurations must not be null");
         }
-        if(configurationParser == null) {
+        if(configurationParsers == null) {
             throw new NullPointerException("configurationParser must not be null");
         }
         this.configurations = configurations;
-        this.configurationParser = configurationParser;
+        this.configurationParsers = configurationParsers;
     }
 
 
@@ -36,22 +36,17 @@ public class ConfigurationProcessor {
             Configuration configuration = configurationProperty.getAnnotation(Configuration.class);
 
             if (configuration != null) {
-                if (configurations.contains(configuration.value())) {
-                    String sourceConfiguration = configurations.getProperty(configuration.value());
+                String sourceConfiguration = configurations.getProperty(configuration.value(), configuration.defaultValue());
+
+                if (sourceConfiguration != null && !Configuration.DEFAULT_VALUE.equals(sourceConfiguration)) {
                     String targetType = configurationProperty.getType().getName();
 
                     Object parsedConfiguration = parseConfiguration(targetType, sourceConfiguration);
                     if (parsedConfiguration != null) {
                         setObjValue(configurationInstance, configurationProperty.getName(), parsedConfiguration);
-                        continue;
                     }
-                }
-
-                if (!Configuration.DEFAULT_VALUE.equals(configuration.defaultValue())) {
-                    LOGGER.finest(MessageFormat.format("Using annotated default value for '{0}'", configuration.value()));
-                    setObjValue(configurationInstance, configurationProperty.getName(), configuration.defaultValue());
                 } else {
-                    LOGGER.warning(MessageFormat.format("No configuration found for '{0}'", configuration.value()));
+                    LOGGER.warning(MessageFormat.format("No configuration found for ''{0}''", configuration.value()));
                 }
             }
         }
@@ -64,7 +59,7 @@ public class ConfigurationProcessor {
         ConfigurationParser responsibleParser = findResponsibleConfigurationParser(targetType);
         Object parsedValue = responsibleParser.parseValue(value);
 
-        LOGGER.finest(MessageFormat.format("parsed '{0}' to '{1}' with {3}",
+        LOGGER.finest(MessageFormat.format("parsed ''{0}'' to ''{1}'' with ''{3}''",
                 value,
                 parsedValue,
                 responsibleParser.getClass().getTypeName()));
@@ -74,7 +69,7 @@ public class ConfigurationProcessor {
 
 
     private ConfigurationParser findResponsibleConfigurationParser(String targetType) {
-        ConfigurationParser responsibleParser = configurationParser.get(targetType);
+        ConfigurationParser responsibleParser = configurationParsers.get(targetType);
         if(responsibleParser != null) {
             return responsibleParser;
         }
@@ -91,10 +86,11 @@ public class ConfigurationProcessor {
                 Field field = clazz.getDeclaredField(fieldName);
                 field.setAccessible(true);
                 field.set(object, fieldValue);
-                LOGGER.finest(MessageFormat.format("Set '{0}'>'{1}' to '{2}'",
+                LOGGER.finest(MessageFormat.format("Set ''{0}''>''{1}'' to ''{2}''",
                         object.getClass().getTypeName(),
                         fieldName,
                         fieldValue));
+                return;
             } catch (NoSuchFieldException e) {
                 clazz = clazz.getSuperclass();
             } catch (Exception e) {

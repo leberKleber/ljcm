@@ -45,7 +45,7 @@ public final class ConfigurationProcessorBuilder {
             for (String className : responsibleClassNames) {
                 mappedConfigurationParsers.put(className, configurationParser);
 
-                LOGGER.fine(MessageFormat.format("'{0}' mapped on {1}",
+                LOGGER.fine(MessageFormat.format("''{0}'' mapped on ''{1}''",
                         className,
                         configurationParser.getClass().getTypeName()));
             }

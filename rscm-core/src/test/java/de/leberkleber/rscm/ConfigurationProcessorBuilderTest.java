@@ -12,7 +12,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 public class ConfigurationProcessorBuilderTest {
 
@@ -20,7 +22,7 @@ public class ConfigurationProcessorBuilderTest {
     public void addConfigurationParser() {
         new ConfigurationProcessorBuilder().addConfigurationParser(new ConfigurationParser() {
             @Override
-            public Set<String> getResponsibleClasses() {
+            public Set<Class> getResponsibleClasses() {
                 return null;
             }
 
@@ -55,8 +57,8 @@ public class ConfigurationProcessorBuilderTest {
     @Test
     public void build() throws NoSuchFieldException, IllegalAccessException {
         ConfigurationLoader configurationLoader = new ConfigurationLoaderDummyImpl("test.test", "Value");
-        ConfigurationParser configurationParser1 = new ConfigurationParserDummyImpl("some.path.to.class1");
-        ConfigurationParser configurationParser2 = new ConfigurationParserDummy2Impl("some.path.to.class2");
+        ConfigurationParser configurationParser1 = new ConfigurationParserDummyImpl(String.class);
+        ConfigurationParser configurationParser2 = new ConfigurationParserDummy2Impl(Long.class);
         ConfigurationProcessor configurationProcessor = new ConfigurationProcessorBuilder()
                 .setConfigurationLoader(configurationLoader)
                 .addConfigurationParser(configurationParser1)
@@ -75,9 +77,9 @@ public class ConfigurationProcessorBuilderTest {
 
         assertNotNull(configurationParsers);
         assertEquals(configurationParsers.size(), 2);
-        assertEquals(configurationParsers.get("some.path.to.class1").getClass().getTypeName(),
+        assertEquals(configurationParsers.get(String.class).getClass().getTypeName(),
                 ConfigurationParserDummyImpl.class.getTypeName());
-        assertEquals(configurationParsers.get("some.path.to.class2").getClass().getTypeName(),
+        assertEquals(configurationParsers.get(Long.class).getClass().getTypeName(),
                 ConfigurationParserDummy2Impl.class.getTypeName());
     }
 }

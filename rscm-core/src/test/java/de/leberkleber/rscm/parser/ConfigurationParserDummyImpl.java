@@ -3,14 +3,14 @@ package de.leberkleber.rscm.parser;
 import java.util.*;
 
 public class ConfigurationParserDummyImpl implements ConfigurationParser {
-    private List<String> classes;
+    private List<Class> classes;
 
-    public ConfigurationParserDummyImpl(String... classes) {
+    public ConfigurationParserDummyImpl(Class... classes) {
         this.classes = Arrays.asList(classes);
     }
 
     @Override
-    public Set<String> getResponsibleClasses() {
+    public Set<Class> getResponsibleClasses() {
         return new HashSet<>(classes);
     }
 

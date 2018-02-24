@@ -17,10 +17,10 @@ import static org.junit.Assert.assertNotNull;
 public class ConfigurationProcessorTest {
     @Test
     public void process() throws Exception {
-        String parserResponsibility = "java.lang.String";
+        Class parserResponsibility = String.class;
         Properties properties = new Properties();
         ConfigurationParser configurationParser = new ConfigurationParserDummyImpl(parserResponsibility);
-        Map<String, ConfigurationParser> configurationParserMap = new HashMap<>();
+        Map<Class, ConfigurationParser> configurationParserMap = new HashMap<>();
 
         properties.put("test.exists", "MyCustomValue");
         configurationParserMap.put(parserResponsibility, configurationParser);
@@ -40,10 +40,10 @@ public class ConfigurationProcessorTest {
 
     @Test(expected = NoResponsibleParserFoundException.class)
     public void processNoMappingParserFound() throws Exception {
-        String parserResponsibility = "nomatching";
+        Class parserResponsibility = Enum.class;
         Properties properties = new Properties();
         ConfigurationParser configurationParser = new ConfigurationParserDummyImpl(parserResponsibility);
-        Map<String, ConfigurationParser> configurationParserMap = new HashMap<>();
+        Map<Class, ConfigurationParser> configurationParserMap = new HashMap<>();
 
         properties.put("test.exists", "MyCustomValue");
         configurationParserMap.put(parserResponsibility, configurationParser);

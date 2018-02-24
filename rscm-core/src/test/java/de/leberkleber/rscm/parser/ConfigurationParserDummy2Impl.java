@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Set;
 
 public class ConfigurationParserDummy2Impl implements ConfigurationParser {
-    private List<String> classes;
+    private List<Class> classes;
 
-    public ConfigurationParserDummy2Impl(String... classes) {
+    public ConfigurationParserDummy2Impl(Class... classes) {
         this.classes = Arrays.asList(classes);
     }
 
     @Override
-    public Set<String> getResponsibleClasses() {
+    public Set<Class> getResponsibleClasses() {
         return new HashSet<>(classes);
     }
 

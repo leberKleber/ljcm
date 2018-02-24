@@ -16,6 +16,11 @@
     <name>Really Small Configuration Management - core</name>
 
     <dependencies>
+        <dependency>
+            <groupId>de.leberkleber.rscm</groupId>
+            <artifactId>rscm-core-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>

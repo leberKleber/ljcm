@@ -4,8 +4,14 @@ import de.leberkleber.rscm.loader.ConfigurationLoader;
 import de.leberkleber.rscm.parser.ConfigurationParser;
 
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Logger;
+
 
 public final class ConfigurationProcessorBuilder {
     private static final Logger LOGGER = Logger.getLogger(ConfigurationProcessorBuilder.class.getName());
@@ -19,7 +25,7 @@ public final class ConfigurationProcessorBuilder {
 
 
     public ConfigurationProcessorBuilder addConfigurationParser(ConfigurationParser configurationParser) {
-        if(configurationParser == null) {
+        if (configurationParser == null) {
             throw new NullPointerException("configurationParser must not be null");
         }
         this.configurationParsers.add(configurationParser);
@@ -27,7 +33,7 @@ public final class ConfigurationProcessorBuilder {
     }
 
     public ConfigurationProcessorBuilder setConfigurationLoader(ConfigurationLoader configurationLoader) {
-        if(configurationLoader == null) {
+        if (configurationLoader == null) {
             throw new NullPointerException("configurationLoader must not be null");
         }
         this.configurationLoader = configurationLoader;
@@ -37,16 +43,16 @@ public final class ConfigurationProcessorBuilder {
 
     public ConfigurationProcessor build() {
         Properties configurations = configurationLoader.loadConfigurations();
-        Map<String, ConfigurationParser> mappedConfigurationParsers = new HashMap<>();
+        Map<Class, ConfigurationParser> mappedConfigurationParsers = new HashMap<>();
 
         for (ConfigurationParser configurationParser : configurationParsers) {
-            Set<String> responsibleClassNames = configurationParser.getResponsibleClasses();
+            Set<Class> responsibleClasses = configurationParser.getResponsibleClasses();
 
-            for (String className : responsibleClassNames) {
-                mappedConfigurationParsers.put(className, configurationParser);
+            for (Class clazz : responsibleClasses) {
+                mappedConfigurationParsers.put(clazz, configurationParser);
 
                 LOGGER.fine(MessageFormat.format("''{0}'' mapped on ''{1}''",
-                        className,
+                        clazz.getTypeName(),
                         configurationParser.getClass().getTypeName()));
             }
         }

@@ -13,14 +13,14 @@ import java.util.logging.Logger;
 public class ConfigurationProcessor {
     private static final Logger LOGGER = Logger.getLogger(ConfigurationProcessor.class.getName());
     private Properties configurations;
-    private Map<String, ConfigurationParser> configurationParsers;
+    private Map<Class, ConfigurationParser> configurationParsers;
 
 
-    protected ConfigurationProcessor(Properties configurations, Map<String, ConfigurationParser> configurationParsers) {
-        if(configurations == null) {
+    ConfigurationProcessor(Properties configurations, Map<Class, ConfigurationParser> configurationParsers) {
+        if (configurations == null) {
             throw new NullPointerException("configurations must not be null");
         }
-        if(configurationParsers == null) {
+        if (configurationParsers == null) {
             throw new NullPointerException("configurationParser must not be null");
         }
         this.configurations = configurations;
@@ -39,7 +39,7 @@ public class ConfigurationProcessor {
                 String sourceConfiguration = configurations.getProperty(configuration.value(), configuration.defaultValue());
 
                 if (sourceConfiguration != null && !Configuration.DEFAULT_VALUE.equals(sourceConfiguration)) {
-                    String targetType = configurationProperty.getType().getName();
+                    Class targetType = configurationProperty.getType();
 
                     Object parsedConfiguration = parseConfiguration(targetType, sourceConfiguration);
                     if (parsedConfiguration != null) {
@@ -55,7 +55,7 @@ public class ConfigurationProcessor {
     }
 
 
-    private Object parseConfiguration(String targetType, String value) {
+    private Object parseConfiguration(Class targetType, String value) {
         ConfigurationParser responsibleParser = findResponsibleConfigurationParser(targetType);
         Object parsedValue = responsibleParser.parseValue(value);
 
@@ -68,9 +68,16 @@ public class ConfigurationProcessor {
     }
 
 
-    private ConfigurationParser findResponsibleConfigurationParser(String targetType) {
-        ConfigurationParser responsibleParser = configurationParsers.get(targetType);
-        if(responsibleParser != null) {
+    private ConfigurationParser findResponsibleConfigurationParser(Class targetType) {
+        ConfigurationParser responsibleParser = null;
+
+        for (Map.Entry<Class, ConfigurationParser> entry : configurationParsers.entrySet()) {
+            if (entry.getKey().getName().equals(targetType.getName())) {
+                responsibleParser = entry.getValue();
+            }
+        }
+
+        if (responsibleParser != null) {
             return responsibleParser;
         }
 

@@ -33,8 +33,10 @@ public class ConfigurationProcessorTest {
         assertNotNull(cfg);
         assertEquals(cfg.getTestExists(), "MyCustomValue");
         assertEquals(cfg.getTestWithDefault(), "defaultV");
+        assertEquals(cfg.getTestWithoutAnnotation(), "default");
         assertEquals(cfg.getTestDoseNotExists(), null);
     }
+
 
     @Test(expected = NoResponsibleParserFoundException.class)
     public void processNoMappingParserFound() throws Exception {
@@ -54,6 +56,19 @@ public class ConfigurationProcessorTest {
         assertNotNull(cfg);
         assertEquals(cfg.getTestExists(), "MyCustomValue");
         assertEquals(cfg.getTestWithDefault(), "defaultV");
+        assertEquals(cfg.getTestWithoutAnnotation(), "default");
         assertEquals(cfg.getTestDoseNotExists(), null);
+    }
+
+
+    @Test(expected = NullPointerException.class)
+    public void constructWithConfigurationsNull() {
+        new ConfigurationProcessor(null, new HashMap<>());
+    }
+
+
+    @Test(expected = NullPointerException.class)
+    public void constructWithConfigurationParsersNull() {
+        new ConfigurationProcessor(new Properties(), null);
     }
 }

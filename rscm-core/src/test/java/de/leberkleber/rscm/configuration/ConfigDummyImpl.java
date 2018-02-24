@@ -12,6 +12,8 @@ public class ConfigDummyImpl {
     @Configuration(value = "testo.testa", defaultValue = "defaultV")
     private String testWithDefault;
 
+    private String testWithoutAnnotation = "default";
+
     public String getTestExists() {
         return testExists;
     }
@@ -22,5 +24,9 @@ public class ConfigDummyImpl {
 
     public String getTestWithDefault() {
         return testWithDefault;
+    }
+
+    public String getTestWithoutAnnotation() {
+        return testWithoutAnnotation;
     }
 }

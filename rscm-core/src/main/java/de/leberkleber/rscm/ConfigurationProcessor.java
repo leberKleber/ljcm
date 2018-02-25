@@ -2,6 +2,7 @@ package de.leberkleber.rscm;
 
 import de.leberkleber.rscm.exception.NoResponsibleParserFoundException;
 import de.leberkleber.rscm.exception.UnableToSetObjectValueException;
+import de.leberkleber.rscm.exception.UnparsableEntityException;
 import de.leberkleber.rscm.parser.ConfigurationParser;
 
 import java.lang.reflect.Field;
@@ -57,7 +58,14 @@ public class ConfigurationProcessor {
 
     private Object parseConfiguration(Class targetType, String value) {
         ConfigurationParser responsibleParser = findResponsibleConfigurationParser(targetType);
-        Object parsedValue = responsibleParser.parseValue(value);
+        Object parsedValue;
+
+        try {
+            parsedValue = responsibleParser.parseValue(value);
+        } catch (Exception e) {
+            String msg = MessageFormat.format("Could not parse ''{0}'' to ''{1}''", value, targetType.getTypeName());
+            throw new UnparsableEntityException(msg);
+        }
 
         LOGGER.finest(MessageFormat.format("parsed ''{0}'' to ''{1}'' with ''{3}''",
                 value,

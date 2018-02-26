@@ -15,6 +15,7 @@
         <module>rscm-core-api</module>
         <module>rscm-core</module>
         <module>rscm-minimal-parser</module>
+        <module>rscm-minimal</module>
     </modules>
 
     <build>

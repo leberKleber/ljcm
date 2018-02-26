@@ -10,23 +10,21 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>rscm-minimal-parser</artifactId>
+    <artifactId>rscm-minimal</artifactId>
     <packaging>jar</packaging>
 
-    <name>Really Small Configuration Management - minimal-parser</name>
+    <name>Really Small Configuration Management - minimal</name>
 
     <dependencies>
         <dependency>
             <groupId>de.leberkleber.rscm</groupId>
-            <artifactId>rscm-core-api</artifactId>
+            <artifactId>rscm-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
+            <groupId>de.leberkleber.rscm</groupId>
+            <artifactId>rscm-minimal-parser</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

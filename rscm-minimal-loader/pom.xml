@@ -10,25 +10,15 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>rscm-minimal</artifactId>
+    <artifactId>rscm-minimal-loader</artifactId>
     <packaging>jar</packaging>
 
-    <name>Really Small Configuration Management - minimal</name>
+    <name>Really Small Configuration Management - minimal-loader</name>
 
     <dependencies>
         <dependency>
             <groupId>de.leberkleber.rscm</groupId>
-            <artifactId>rscm-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>de.leberkleber.rscm</groupId>
-            <artifactId>rscm-minimal-parser</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>de.leberkleber.rscm</groupId>
-            <artifactId>rscm-minimal-loader</artifactId>
+            <artifactId>rscm-core-api</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

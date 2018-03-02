@@ -1,4 +1,4 @@
-#RSCM minimal parser
+#LJCM minimal parser
 This module contains a minimal set of \<ConfigurationParser\> for types:
 - Boolean / boolean @BooleanParser
 - Byte / byte @ByteParser

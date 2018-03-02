@@ -1,4 +1,4 @@
-#RSCM minimal loader
+#LJCM minimal loader
 ##Usable loader:
 * EnvironmentVariableLoader
 * PropertiesFileLoader

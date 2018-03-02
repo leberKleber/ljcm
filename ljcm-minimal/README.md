@@ -1,6 +1,6 @@
-#RSCM minimal parser
+#LJCM minimal parser
 This module contains:
-- rscm-core
-- rscm-minimal-parser
+- ljcm-core
+- ljcm-minimal-parser
 
 Can be used as single dependency import

@@ -10,6 +10,9 @@
     <packaging>pom</packaging>
 
     <name>Really Small Configuration Management</name>
+    <description>Small, simple and lightweight java framework to manage configurations</description>
+
+    <url>https://github.com/leberKleber/rscm</url>
 
     <licenses>
         <license>
@@ -18,6 +21,11 @@
         </license>
     </licenses>
 
+    <scm>
+        <url>https://github.com/leberKleber/rscm.git</url>
+        <connection>scm:git:https://github.com/leberKleber/rscm.git</connection>
+    </scm>
+
     <modules>
         <module>rscm-core-api</module>
         <module>rscm-core</module>
@@ -25,6 +33,13 @@
         <module>rscm-minimal-loader</module>
         <module>rscm-minimal</module>
     </modules>
+
+    <developers>
+        <developer>
+            <name>leberkleber</name>
+            <email>max.marche@live.de</email>
+        </developer>
+    </developers>
 
     <build>
         <plugins>
@@ -48,6 +63,57 @@
                     <check/>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
+
+    <profiles>
+        <profile>
+            <id>sign</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

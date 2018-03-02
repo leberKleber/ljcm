@@ -1,21 +1,17 @@
-package util;
+package de.leberkleber.ljcm.loader.impl;
 
 import de.leberkleber.ljcm.loader.ConfigurationLoader;
 
 import java.util.Map;
 import java.util.Properties;
 
-public class DummyLoader implements ConfigurationLoader {
-    private Map<String, String> data;
-
-    public DummyLoader(Map<String, String> data) {
-        this.data = data;
-    }
-
+public class EnvironmentVariableLoader implements ConfigurationLoader {
     @Override
     public Properties loadConfigurations() {
         Properties properties = new Properties();
-        properties.putAll(data);
+        Map<String, String> envVars = System.getenv();
+
+        envVars.forEach(properties::put);
 
         return properties;
     }

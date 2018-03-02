@@ -1,10 +1,8 @@
 #RSCM minimal loader
 ##Usable loader:
+* EnvironmentVariableLoader
+* PropertiesFileLoader
+* HierarchicalLoaderBuilder
 
 ##Not implemented loader:
-* EnvironmentVariableLoader
 * YamlFileLoader
-* PropertiesFileLoader
-
-
-* HierarchicalLoaderBuilder

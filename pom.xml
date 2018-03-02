@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.leberkleber.rscm</groupId>
+    <groupId>de.leberkleber.ljcm</groupId>
     <artifactId>parent</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Really Small Configuration Management</name>
+    <name>Lightweight Java Configuration Management</name>
     <description>Small, simple and lightweight java framework to manage configurations</description>
 
-    <url>https://github.com/leberKleber/rscm</url>
+    <url>https://github.com/leberKleber/ljcm</url>
 
     <licenses>
         <license>
@@ -22,16 +22,16 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/leberKleber/rscm.git</url>
-        <connection>scm:git:https://github.com/leberKleber/rscm.git</connection>
+        <url>https://github.com/leberKleber/ljcm.git</url>
+        <connection>scm:git:https://github.com/leberKleber/ljcm.git</connection>
     </scm>
 
     <modules>
-        <module>rscm-core-api</module>
-        <module>rscm-core</module>
-        <module>rscm-minimal-parser</module>
-        <module>rscm-minimal-loader</module>
-        <module>rscm-minimal</module>
+        <module>ljcm-core-api</module>
+        <module>ljcm-core</module>
+        <module>ljcm-minimal-parser</module>
+        <module>ljcm-minimal-loader</module>
+        <module>ljcm-minimal</module>
     </modules>
 
     <developers>

@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>de.leberkleber.rscm</groupId>
+        <groupId>de.leberkleber.ljcm</groupId>
         <artifactId>parent</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>rscm-minimal-loader</artifactId>
+    <artifactId>ljcm-core-api</artifactId>
     <packaging>jar</packaging>
 
-    <name>Really Small Configuration Management - minimal-loader</name>
+    <name>Lightweight Java Configuration Management - core-api</name>
 
     <licenses>
         <license>
@@ -23,11 +23,6 @@
     </licenses>
 
     <dependencies>
-        <dependency>
-            <groupId>de.leberkleber.rscm</groupId>
-            <artifactId>rscm-core-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>

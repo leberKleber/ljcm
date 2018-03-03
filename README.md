@@ -6,7 +6,7 @@
 Small, simple and lightweight java framework to manage configurations
 
 ## How to use
-1 ) Include via Maven
+### 1) Include via Maven
 ```xml
 <dependency>
     <groupId>de.leberkleber.ljcm</groupId>
@@ -14,7 +14,7 @@ Small, simple and lightweight java framework to manage configurations
     <version>0.1-SNAPSHOT</version>
 </dependency>
 ```
-2 ) Annotate Configuration-File
+### 2) Annotate Configuration-File
 ```java
 public class Configuration {
     @Configuration("my.config.key")
@@ -25,7 +25,7 @@ public class Configuration {
     }
 }
 ```
-3 ) Configure ljcm
+### 3) Configure ljcm
 ```java
 public static void main(String[] args){
     ConfigurationProcessor cp = new ConfigurationProcessorBuilder()
@@ -37,10 +37,8 @@ public static void main(String[] args){
     cp.process(Configuration.class);
 }
 ```
-getDefaultParser
-
-##Parsers
-###Default parsers
+## Parsers
+### Default parsers
 The "ljcm-minimal-parser" contains a minial set of parsers:
 - Boolean / boolean @BooleanParser
 - Byte / byte @ByteParser
@@ -57,10 +55,11 @@ All "minimal-parser" can be loaded via:
 ```java
 Parser.getDefaultParser()
 ```
-###Custom parser
+### Custom parser
 A custom parser must implement the "ConfigurationParser" interface.
 
-##Logging
+## Logging
+
 ljcm uses jul. You can easy use a jul-bridge e.g.:
 SLF4J:
 ```java

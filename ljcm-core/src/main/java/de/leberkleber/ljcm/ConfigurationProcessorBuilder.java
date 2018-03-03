@@ -32,6 +32,18 @@ public final class ConfigurationProcessorBuilder {
         return this;
     }
 
+
+    public ConfigurationProcessorBuilder addConfigurationParsers(List<ConfigurationParser> configurationParsers) {
+        if(configurationParsers == null) {
+            throw new NullPointerException("configurationParsers must not be null");
+        }
+        for (ConfigurationParser configurationParser : configurationParsers) {
+            addConfigurationParser(configurationParser);
+        }
+        return this;
+    }
+
+
     public ConfigurationProcessorBuilder setConfigurationLoader(ConfigurationLoader configurationLoader) {
         if (configurationLoader == null) {
             throw new NullPointerException("configurationLoader must not be null");

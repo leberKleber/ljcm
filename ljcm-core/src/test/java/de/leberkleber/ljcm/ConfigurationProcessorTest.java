@@ -25,8 +25,6 @@ public class ConfigurationProcessorTest {
         properties.put("test.exists", "MyCustomValue");
         configurationParserMap.put(parserResponsibility, configurationParser);
 
-
-
         ConfigurationProcessor configurationProcessor = new ConfigurationProcessor(properties, configurationParserMap);
         ConfigDummyImpl cfg = configurationProcessor.process(ConfigDummyImpl.class);
 

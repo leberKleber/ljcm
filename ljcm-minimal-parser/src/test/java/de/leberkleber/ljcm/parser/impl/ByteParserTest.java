@@ -32,29 +32,29 @@ public class ByteParserTest {
 
     @Test
     public void parseValue() {
-        assertEquals((byte)1, parser.parseValue("1"));
-        assertEquals((byte)53, parser.parseValue("53"));
-        assertEquals((byte)-69, parser.parseValue("-69"));
+        assertEquals((byte)1, parser.parseValue("1", Byte.class));
+        assertEquals((byte)53, parser.parseValue("53", Byte.class));
+        assertEquals((byte)-69, parser.parseValue("-69", Byte.class));
     }
 
 
     @Test(expected = UnparsableEntityException.class)
     public void parseNull() {
-        parser.parseValue(null);
+        parser.parseValue(null, Byte.class);
         fail();
     }
 
 
     @Test(expected = NumberFormatException.class)
     public void parseInvalidNum() {
-        parser.parseValue("-454282");
+        parser.parseValue("-454282", Byte.class);
         fail();
     }
 
 
     @Test(expected = NumberFormatException.class)
     public void parseInvalidString() {
-        parser.parseValue("s");
+        parser.parseValue("s", Byte.class);
         fail();
     }
 }

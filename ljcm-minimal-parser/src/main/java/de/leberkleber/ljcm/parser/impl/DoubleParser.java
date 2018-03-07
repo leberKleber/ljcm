@@ -17,7 +17,7 @@ public class DoubleParser implements ConfigurationParser {
     }
 
     @Override
-    public Double parseValue(String value) {
+    public Double parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to double");
         return Double.parseDouble(value);
     }

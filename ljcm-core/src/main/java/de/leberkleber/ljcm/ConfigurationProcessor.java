@@ -7,6 +7,8 @@ import de.leberkleber.ljcm.parser.ConfigurationParser;
 
 import java.lang.reflect.Field;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -57,36 +59,43 @@ public class ConfigurationProcessor {
 
 
     private Object parseConfiguration(Class targetType, String value) {
-        ConfigurationParser responsibleParser = findResponsibleConfigurationParser(targetType);
+        List<ConfigurationParser> responsibleParsers = findResponsibleConfigurationParser(targetType);
         Object parsedValue;
 
-        try {
-            parsedValue = responsibleParser.parseValue(value);
-        } catch (Exception e) {
-            String msg = MessageFormat.format("Could not parse ''{0}'' to ''{1}''", value, targetType.getTypeName());
-            throw new UnparsableEntityException(msg);
+        for (ConfigurationParser configurationParser : responsibleParsers) {
+            try {
+                parsedValue = configurationParser.parseValue(value, targetType);
+                if (parsedValue == null) {
+                    continue;
+                }
+            } catch (Exception e) {
+                String msg = MessageFormat.format("Could not parse ''{0}'' to ''{1}''", value, targetType.getTypeName());
+                throw new UnparsableEntityException(msg);
+            }
+
+            LOGGER.finest(MessageFormat.format("parsed ''{0}'' to ''{1}'' with ''{3}''",
+                    value,
+                    parsedValue,
+                    configurationParser.getClass().getTypeName()));
+
+            return parsedValue;
         }
 
-        LOGGER.finest(MessageFormat.format("parsed ''{0}'' to ''{1}'' with ''{3}''",
-                value,
-                parsedValue,
-                responsibleParser.getClass().getTypeName()));
-
-        return parsedValue;
+        return null;
     }
 
 
-    private ConfigurationParser findResponsibleConfigurationParser(Class targetType) {
-        ConfigurationParser responsibleParser = null;
+    private List<ConfigurationParser> findResponsibleConfigurationParser(Class targetType) {
+        List<ConfigurationParser> responsibleParsers = new ArrayList<>();
 
         for (Map.Entry<Class, ConfigurationParser> entry : configurationParsers.entrySet()) {
-            if (entry.getKey().getName().equals(targetType.getName())) {
-                responsibleParser = entry.getValue();
+            if (entry.getKey().isAssignableFrom(targetType)) {
+                responsibleParsers.add(entry.getValue());
             }
         }
 
-        if (responsibleParser != null) {
-            return responsibleParser;
+        if (!responsibleParsers.isEmpty()) {
+            return responsibleParsers;
         }
 
         String msg = MessageFormat.format("No responsible parser found for type {0}", targetType);

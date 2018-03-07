@@ -17,7 +17,7 @@ public class IntParser implements ConfigurationParser {
     }
 
     @Override
-    public Integer parseValue(String value) {
+    public Integer parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to int");
         return Integer.parseInt(value);
     }

@@ -32,30 +32,30 @@ public class LongParserTest {
 
     @Test
     public void parseValue() {
-        assertEquals(1L, parser.parseValue("1"));
-        assertEquals(-5564L, parser.parseValue("-5564"));
-        assertEquals(35005L, parser.parseValue("35005"));
-        assertEquals(-8L, parser.parseValue("-8"));
-        assertEquals(0L, parser.parseValue("0"));
+        assertEquals(1L, parser.parseValue("1", Long.class));
+        assertEquals(-5564L, parser.parseValue("-5564", Long.class));
+        assertEquals(35005L, parser.parseValue("35005", Long.class));
+        assertEquals(-8L, parser.parseValue("-8", Long.class));
+        assertEquals(0L, parser.parseValue("0", Long.class));
     }
 
     @Test(expected = UnparsableEntityException.class)
     public void parseNull() {
-        parser.parseValue(null);
+        parser.parseValue(null, Long.class);
         fail();
     }
 
 
     @Test(expected = NumberFormatException.class)
     public void parseInvalidDouble1() {
-        parser.parseValue("asdf");
+        parser.parseValue("asdf", Long.class);
         fail();
     }
 
 
     @Test(expected = NumberFormatException.class)
     public void parseInvalidDouble2() {
-        parser.parseValue("5,555.5");
+        parser.parseValue("5,555.5", Long.class);
         fail();
     }
 }

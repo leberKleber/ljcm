@@ -17,7 +17,7 @@ public class FloatParser implements ConfigurationParser {
     }
 
     @Override
-    public Float parseValue(String value) {
+    public Float parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to float");
         return Float.parseFloat(value);
     }

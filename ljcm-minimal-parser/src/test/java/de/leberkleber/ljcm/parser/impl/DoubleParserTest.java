@@ -32,30 +32,30 @@ public class DoubleParserTest {
 
     @Test
     public void parseValue() {
-        assertEquals(1.0d, parser.parseValue("1"));
-        assertEquals(-5.564d, parser.parseValue("-5.564"));
-        assertEquals(3500.5d, parser.parseValue("3500.5"));
-        assertEquals(-8d, parser.parseValue("-8"));
-        assertEquals(0d, parser.parseValue("0"));
+        assertEquals(1.0d, parser.parseValue("1", Double.class));
+        assertEquals(-5.564d, parser.parseValue("-5.564", Double.class));
+        assertEquals(3500.5d, parser.parseValue("3500.5", Double.class));
+        assertEquals(-8d, parser.parseValue("-8", Double.class));
+        assertEquals(0d, parser.parseValue("0", Double.class));
     }
 
     @Test(expected = UnparsableEntityException.class)
     public void parseNull() {
-        parser.parseValue(null);
+        parser.parseValue(null, Double.class);
         fail();
     }
 
 
     @Test(expected = NumberFormatException.class)
     public void parseInvalidDouble1() {
-        parser.parseValue("asdf");
+        parser.parseValue("asdf", Double.class);
         fail();
     }
 
 
     @Test(expected = NumberFormatException.class)
     public void parseInvalidDouble2() {
-        parser.parseValue("5,555.5");
+        parser.parseValue("5,555.5", Double.class);
         fail();
     }
 }

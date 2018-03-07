@@ -31,15 +31,15 @@ public class CharArrayParserTest {
 
     @Test
     public void parseValue() {
-        assertTrue(Arrays.equals("sss1".toCharArray(), (char[])parser.parseValue("sss1")));
-        assertTrue(Arrays.equals("äd aqsd".toCharArray(), (char[])parser.parseValue("äd aqsd")));
-        assertTrue(Arrays.equals("-9".toCharArray(), (char[])parser.parseValue("-9")));
+        assertTrue(Arrays.equals("sss1".toCharArray(), (char[])parser.parseValue("sss1", Character[].class)));
+        assertTrue(Arrays.equals("äd aqsd".toCharArray(), (char[])parser.parseValue("äd aqsd", Character[].class)));
+        assertTrue(Arrays.equals("-9".toCharArray(), (char[])parser.parseValue("-9", Character[].class)));
     }
 
 
     @Test(expected = UnparsableEntityException.class)
     public void parseNull() {
-        parser.parseValue(null);
+        parser.parseValue(null, Character[].class);
         fail();
     }
 }

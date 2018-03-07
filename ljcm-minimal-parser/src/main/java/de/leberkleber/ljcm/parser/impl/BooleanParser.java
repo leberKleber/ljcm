@@ -18,7 +18,7 @@ public class BooleanParser implements ConfigurationParser {
     }
 
     @Override
-    public Boolean parseValue(String value) {
+    public Boolean parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to boolean");
         Set<String> trueSet = new HashSet<>(Arrays.asList("1", "true", "yes"));
         value = value.toLowerCase();

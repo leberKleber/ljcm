@@ -17,7 +17,7 @@ public class CharArrayParser implements ConfigurationParser {
     }
 
     @Override
-    public char[] parseValue(String value) {
+    public char[] parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to char[]");
         return value.toCharArray();
         }

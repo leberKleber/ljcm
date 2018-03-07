@@ -5,10 +5,10 @@ import de.leberkleber.ljcm.parser.ConfigurationParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Parser {
-    private Parser() {}
+public final class Parsers {
+    private Parsers() {}
 
-    public static List<ConfigurationParser> getDefaultParser() {
+    public static List<ConfigurationParser> getDefaultParsers() {
         List<ConfigurationParser> defaultParser = new ArrayList<>();
 
         defaultParser.add(new BooleanParser());
@@ -18,6 +18,7 @@ public final class Parser {
         defaultParser.add(new DoubleParser());
         defaultParser.add(new FloatParser());
         defaultParser.add(new IntParser());
+        defaultParser.add(new LongParser());
         defaultParser.add(new ShortParser());
         defaultParser.add(new StringParser());
 

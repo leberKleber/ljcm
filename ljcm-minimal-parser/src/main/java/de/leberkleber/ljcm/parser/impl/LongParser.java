@@ -17,7 +17,7 @@ public class LongParser implements ConfigurationParser {
     }
 
     @Override
-    public Long parseValue(String value) {
+    public Long parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to long");
         return Long.parseLong(value);
     }

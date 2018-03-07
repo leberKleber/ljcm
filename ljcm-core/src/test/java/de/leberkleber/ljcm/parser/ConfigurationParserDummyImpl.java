@@ -15,7 +15,7 @@ public class ConfigurationParserDummyImpl implements ConfigurationParser {
     }
 
     @Override
-    public Object parseValue(String value) {
+    public Object parseValue(String value, Class targetClass) {
         return value;
     }
 }

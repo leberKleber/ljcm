@@ -18,11 +18,13 @@ public interface ConfigurationParser {
     Set<Class> getResponsibleClasses();
 
     /**
-     * Should parse {@param value} to one of responsible classes, given by
+     * Should parse {@param value} to {@param targetType}, which is one
+     * of responsible the classes, given by
      * {@link ConfigurationParser#getResponsibleClasses()}
      *
      * @param value {@link String}
+     * @param targetType {@link Class}
      * @return {@link Object instanceof Set<Class>}
      */
-    Object parseValue(String value);
+    Object parseValue(String value, Class targetType);
 }

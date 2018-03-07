@@ -32,16 +32,16 @@ public class BooleanParserTest {
 
     @Test
     public void parseValue() {
-        assertEquals(Boolean.TRUE, parser.parseValue("1"));
-        assertEquals(Boolean.TRUE, parser.parseValue("yes"));
-        assertEquals(Boolean.TRUE, parser.parseValue("true"));
-        assertEquals(Boolean.FALSE, parser.parseValue("asfdsdgf"));
-        assertEquals(Boolean.FALSE, parser.parseValue(""));
+        assertEquals(Boolean.TRUE, parser.parseValue("1", Boolean.class));
+        assertEquals(Boolean.TRUE, parser.parseValue("yes", Boolean.class));
+        assertEquals(Boolean.TRUE, parser.parseValue("true", Boolean.class));
+        assertEquals(Boolean.FALSE, parser.parseValue("asfdsdgf", Boolean.class));
+        assertEquals(Boolean.FALSE, parser.parseValue("", Boolean.class));
     }
 
     @Test(expected = UnparsableEntityException.class)
     public void parseNull() {
-        parser.parseValue(null);
+        parser.parseValue(null, Boolean.class);
         fail();
     }
 }

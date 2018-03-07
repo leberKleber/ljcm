@@ -32,22 +32,22 @@ public class CharParserTest {
 
     @Test
     public void parseValue() {
-        assertEquals('2', parser.parseValue("2"));
-        assertEquals('ä', parser.parseValue("ä"));
-        assertEquals('l', parser.parseValue("l"));
+        assertEquals('2', parser.parseValue("2", Character.class));
+        assertEquals('ä', parser.parseValue("ä", Character.class));
+        assertEquals('l', parser.parseValue("l", Character.class));
     }
 
 
     @Test(expected = UnparsableEntityException.class)
     public void parseNull() {
-        parser.parseValue(null);
+        parser.parseValue(null, Character.class);
         fail();
     }
 
 
     @Test(expected = UnparsableEntityException.class)
     public void parseToLongString() {
-        parser.parseValue("tooManyChars");
+        parser.parseValue("tooManyChars", Character.class);
         fail();
     }
 }

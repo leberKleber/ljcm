@@ -31,12 +31,12 @@ public class StringParserTest {
 
     @Test
     public void parseValue() {
-        assertEquals("asdfadga11d54sfg#drfg$%&/(", parser.parseValue("asdfadga11d54sfg#drfg$%&/("));
+        assertEquals("asdfadga11d54sfg#drfg$%&/(", parser.parseValue("asdfadga11d54sfg#drfg$%&/(", String.class));
     }
 
     @Test(expected = UnparsableEntityException.class)
     public void parseNull() {
-        parser.parseValue(null);
+        parser.parseValue(null, String.class);
         fail();
     }
 }

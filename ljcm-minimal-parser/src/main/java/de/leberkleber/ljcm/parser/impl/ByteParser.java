@@ -17,7 +17,7 @@ public class ByteParser implements ConfigurationParser {
     }
 
     @Override
-    public Byte parseValue(String value) {
+    public Byte parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to byte");
         return Byte.parseByte(value);
     }

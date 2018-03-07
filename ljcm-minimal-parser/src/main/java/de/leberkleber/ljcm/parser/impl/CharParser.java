@@ -17,7 +17,7 @@ public class CharParser implements ConfigurationParser {
     }
 
     @Override
-    public Character parseValue(String value) {
+    public Character parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to char");
         if(value.length() != 1) throw new UnparsableEntityException("value must contain only one character");
         return value.charAt(0);

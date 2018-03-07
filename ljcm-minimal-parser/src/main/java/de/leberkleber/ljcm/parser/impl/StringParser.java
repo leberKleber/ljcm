@@ -13,7 +13,7 @@ public class StringParser implements ConfigurationParser {
     }
 
     @Override
-    public String parseValue(String value) {
+    public String parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to string");
         return value;
     }

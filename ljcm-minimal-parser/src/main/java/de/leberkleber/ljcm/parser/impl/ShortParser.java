@@ -17,7 +17,7 @@ public class ShortParser implements ConfigurationParser {
     }
 
     @Override
-    public Short parseValue(String value) {
+    public Short parseValue(String value, Class targetType) {
         if(value == null) throw new UnparsableEntityException("Could not parse 'null' to short");
         return Short.parseShort(value);
     }

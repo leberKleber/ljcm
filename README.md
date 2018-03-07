@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/lebaKleba/ljcm.svg?branch=master)](https://travis-ci.org/lebaKleba/ljcm)
-[![codecov.io](https://codecov.io/github/lebaKleba/ljcm/coverage.svg?branch=master)](https://codecov.io/github/lebaKleba)
+[![Build Status](https://travis-ci.org/leberKleber/ljcm.svg?branch=master)](https://travis-ci.org/leberKleber/ljcm)
+[![codecov.io](https://codecov.io/github/leberKleber/ljcm/coverage.svg?branch=master)](https://codecov.io/github/leberKleber)
 # ljcm 
 **Lightweight Java Configuration Management**
 
@@ -9,7 +9,7 @@ Small, simple and lightweight java framework to manage configurations
 ### 1) Include via Maven
 ```xml
 <dependency>
-    <groupId>de.lebakleba.ljcm</groupId>
+    <groupId>de.leberkleber.ljcm</groupId>
     <artifactId>ljcm-minimal</artifactId>
     <version>0.1-SNAPSHOT</version>
 </dependency>

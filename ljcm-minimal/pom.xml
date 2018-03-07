@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>de.lebakleba.ljcm</groupId>
+        <groupId>de.leberkleber.ljcm</groupId>
         <artifactId>parent</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
@@ -24,17 +24,17 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.lebakleba.ljcm</groupId>
+            <groupId>de.leberkleber.ljcm</groupId>
             <artifactId>ljcm-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>de.lebakleba.ljcm</groupId>
+            <groupId>de.leberkleber.ljcm</groupId>
             <artifactId>ljcm-minimal-parser</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>de.lebakleba.ljcm</groupId>
+            <groupId>de.leberkleber.ljcm</groupId>
             <artifactId>ljcm-minimal-loader</artifactId>
             <version>${project.version}</version>
         </dependency>

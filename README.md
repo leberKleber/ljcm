@@ -9,7 +9,7 @@ Small, simple and lightweight java framework to manage configurations
 ### 1) Include via Maven
 ```xml
 <dependency>
-    <groupId>de.leberkleber.ljcm</groupId>
+    <groupId>io.github.leberkleber.ljcm</groupId>
     <artifactId>ljcm-minimal</artifactId>
     <version>0.1-SNAPSHOT</version>
 </dependency>

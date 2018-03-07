@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>de.leberkleber.ljcm</groupId>
+        <groupId>io.github.leberkleber.ljcm</groupId>
         <artifactId>parent</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
@@ -24,7 +24,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.leberkleber.ljcm</groupId>
+            <groupId>io.github.leberkleber.ljcm</groupId>
             <artifactId>ljcm-core-api</artifactId>
             <version>${project.version}</version>
         </dependency>

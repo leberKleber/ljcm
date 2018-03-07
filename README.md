@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/lebakleba/ljcm.svg?branch=master)](https://travis-ci.org/lebakleba/ljcm)
-[![codecov.io](https://codecov.io/github/lebakleba/ljcm/coverage.svg?branch=master)](https://codecov.io/github/lebakleba)
+[![Build Status](https://travis-ci.org/lebaKleba/ljcm.svg?branch=master)](https://travis-ci.org/lebaKleba/ljcm)
+[![codecov.io](https://codecov.io/github/lebaKleba/ljcm/coverage.svg?branch=master)](https://codecov.io/github/lebaKleba)
 # ljcm 
 **Lightweight Java Configuration Management**
 

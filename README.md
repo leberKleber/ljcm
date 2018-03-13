@@ -32,14 +32,18 @@ public static void main(String[] args){
     ConfigurationProcessor cp = new ConfigurationProcessorBuilder()
         .addConfigurationParsers(Parser.getDefaultParser())
         .setConfigurationLoader(
-                new PropertiesFileLoader("classpath:/app.properties")
+            new HierarchicalLoader.Builder()
+                .addLoader(new EnvironmentVariableLoader())
+                .addLoader(new PropertiesFileLoader("classpath:/app.properties"))
+                .addLoader(new PropertiesFileLoader("/etc/myapp/app.properties"))
+                .build();
         ).build();
           
     cp.process(Configuration.class);
 }
 ```
-## Parsers
-### Default parsers
+## Configuration parser
+### Default parser
 The "ljcm-minimal-parser" contains a minial set of parsers:
 - Boolean / boolean @BooleanParser
 - Byte / byte @ByteParser
@@ -58,6 +62,13 @@ Parser.getDefaultParser()
 ```
 ### Custom parser
 A custom parser must implement the "ConfigurationParser" interface.
+
+## Configuration loader
+### Default loader
+The "ljcm-minimal-loader" contains a minial set of loaders:
+- HierarchicalLoader
+- EnvironmentVariableLoader
+- PropertiesFileLoader
 
 ## Logging
 

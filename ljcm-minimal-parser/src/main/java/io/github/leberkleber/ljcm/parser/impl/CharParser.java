@@ -1,6 +1,6 @@
 package io.github.leberkleber.ljcm.parser.impl;
 
-import io.github.leberkleber.ljcm.exception.UnparsableEntityException;
+import io.github.leberkleber.ljcm.parser.ConfigurationParserException;
 import io.github.leberkleber.ljcm.parser.ConfigurationParser;
 
 import java.util.HashSet;
@@ -18,8 +18,8 @@ public class CharParser implements ConfigurationParser {
 
     @Override
     public Character parseValue(String value, Class targetType) {
-        if(value == null) throw new UnparsableEntityException("Could not parse 'null' to char");
-        if(value.length() != 1) throw new UnparsableEntityException("value must contain only one character");
+        if(value == null) throw new ConfigurationParserException("Could not parse 'null' to char");
+        if(value.length() != 1) throw new ConfigurationParserException("value must contain only one character");
         return value.charAt(0);
     }
 }

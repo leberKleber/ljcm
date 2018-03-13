@@ -1,6 +1,5 @@
 package io.github.leberkleber.ljcm.loader.impl;
 
-import io.github.leberkleber.ljcm.loader.ConfigurationLoaderException;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -59,7 +58,7 @@ public class PropertiesFileLoaderTest {
     }
 
 
-    @Test(expected = ConfigurationLoaderException.class)
+    @Test(expected = RuntimeException.class)
     public void loadConfigurationsFromFSNotFound()  {
         //given
         PropertiesFileLoader propertiesFileLoader = new PropertiesFileLoader("/this/file/do/not/exists/######");
@@ -74,7 +73,7 @@ public class PropertiesFileLoaderTest {
     }
 
 
-    @Test(expected = ConfigurationLoaderException.class)
+    @Test(expected = RuntimeException.class)
     public void loadConfigurationsFromClasspathNotFound()  {
         //given
         PropertiesFileLoader propertiesFileLoader = new PropertiesFileLoader("classpath:/this/file/do/not/exists/######");

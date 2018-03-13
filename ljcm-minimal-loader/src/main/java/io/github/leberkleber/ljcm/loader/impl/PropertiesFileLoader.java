@@ -1,7 +1,6 @@
 package io.github.leberkleber.ljcm.loader.impl;
 
 import io.github.leberkleber.ljcm.loader.ConfigurationLoader;
-import io.github.leberkleber.ljcm.loader.ConfigurationLoaderException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,8 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class PropertiesFileLoader implements ConfigurationLoader {
+    private static final Logger LOGGER = Logger.getLogger(PropertiesFileLoader.class.getName());
     private String propertiesFilePath;
 
 
@@ -40,13 +41,13 @@ public class PropertiesFileLoader implements ConfigurationLoader {
 
             properties.load(inputStream);
         } catch (IOException e) {
-            throw new ConfigurationLoaderException("Error while loading properties cause: ", e);
+            throw new RuntimeException("Error while loading properties cause: ", e);
         } finally {
             if(inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    throw new ConfigurationLoaderException("Error while closing inputStream cause: ", e);
+                    LOGGER.warning("Error while closing inputStream cause: " + e);
                 }
             }
         }

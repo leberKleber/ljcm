@@ -1,6 +1,6 @@
 package io.github.leberkleber.ljcm.parser.impl;
 
-import io.github.leberkleber.ljcm.exception.UnparsableEntityException;
+import io.github.leberkleber.ljcm.parser.ConfigurationParserException;
 import io.github.leberkleber.ljcm.parser.ConfigurationParser;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +39,7 @@ public class FloatParserTest {
         assertEquals(0f, parser.parseValue("0", Float.class));
     }
 
-    @Test(expected = UnparsableEntityException.class)
+    @Test(expected = ConfigurationParserException.class)
     public void parseNull() {
         parser.parseValue(null, Float.class);
         fail();

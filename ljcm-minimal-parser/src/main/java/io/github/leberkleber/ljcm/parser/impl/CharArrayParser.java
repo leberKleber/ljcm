@@ -1,6 +1,6 @@
 package io.github.leberkleber.ljcm.parser.impl;
 
-import io.github.leberkleber.ljcm.exception.UnparsableEntityException;
+import io.github.leberkleber.ljcm.parser.ConfigurationParserException;
 import io.github.leberkleber.ljcm.parser.ConfigurationParser;
 
 import java.util.HashSet;
@@ -18,7 +18,7 @@ public class CharArrayParser implements ConfigurationParser {
 
     @Override
     public char[] parseValue(String value, Class targetType) {
-        if(value == null) throw new UnparsableEntityException("Could not parse 'null' to char[]");
+        if(value == null) throw new ConfigurationParserException("Could not parse 'null' to char[]");
         return value.toCharArray();
         }
         }

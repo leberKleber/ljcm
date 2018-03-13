@@ -2,7 +2,7 @@ package io.github.leberkleber.ljcm;
 
 import io.github.leberkleber.ljcm.exception.NoResponsibleParserFoundException;
 import io.github.leberkleber.ljcm.exception.UnableToSetObjectValueException;
-import io.github.leberkleber.ljcm.exception.UnparsableEntityException;
+import io.github.leberkleber.ljcm.parser.ConfigurationParserException;
 import io.github.leberkleber.ljcm.parser.ConfigurationParser;
 
 import java.lang.reflect.Field;
@@ -70,7 +70,7 @@ public class ConfigurationProcessor {
                 }
             } catch (Exception e) {
                 String msg = MessageFormat.format("Could not parse ''{0}'' to ''{1}''", value, targetType.getTypeName());
-                throw new UnparsableEntityException(msg);
+                throw new ConfigurationParserException(msg);
             }
 
             LOGGER.finest(MessageFormat.format("parsed ''{0}'' to ''{1}'' with ''{3}''",

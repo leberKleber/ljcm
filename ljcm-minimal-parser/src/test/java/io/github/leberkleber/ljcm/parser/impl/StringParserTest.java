@@ -1,6 +1,6 @@
 package io.github.leberkleber.ljcm.parser.impl;
 
-import io.github.leberkleber.ljcm.exception.UnparsableEntityException;
+import io.github.leberkleber.ljcm.parser.ConfigurationParserException;
 import io.github.leberkleber.ljcm.parser.ConfigurationParser;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class StringParserTest {
         assertEquals("asdfadga11d54sfg#drfg$%&/(", parser.parseValue("asdfadga11d54sfg#drfg$%&/(", String.class));
     }
 
-    @Test(expected = UnparsableEntityException.class)
+    @Test(expected = ConfigurationParserException.class)
     public void parseNull() {
         parser.parseValue(null, String.class);
         fail();

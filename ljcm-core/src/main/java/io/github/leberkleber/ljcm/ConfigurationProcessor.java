@@ -31,7 +31,15 @@ public class ConfigurationProcessor {
     }
 
 
-    public <C> C process(Class<C> configurationClass) throws Exception {
+    /**
+     *
+     * @param configurationClass
+     * @param <C> class which includes @{@link Configuration} annotated fields
+     * @return instance of configurationClass
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
+    public <C> C process(Class<C> configurationClass) throws IllegalAccessException, InstantiationException {
         C configurationInstance = configurationClass.newInstance();
         Field[] configurationProperties = configurationClass.getDeclaredFields();
 

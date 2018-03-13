@@ -13,6 +13,7 @@ public interface ConfigurationParser {
      * is responsible. Primitive Types can also applied to {@link Set<Class>}
      * e.g.: {@code int.class;}.
      *
+     * @since 1.0
      * @return {@link Set<Class>}
      */
     Set<Class> getResponsibleClasses();
@@ -22,6 +23,7 @@ public interface ConfigurationParser {
      * of responsible the classes, given by
      * {@link ConfigurationParser#getResponsibleClasses()}
      *
+     * @since 1.0
      * @param value {@link String}
      * @param targetType {@link Class}
      * @return {@link Object instanceof Set<Class>}

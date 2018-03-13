@@ -57,7 +57,8 @@ public class ConfigurationProcessor {
                         setObjValue(configurationInstance, configurationProperty.getName(), parsedConfiguration);
                     }
                 } else {
-                    LOGGER.warning(MessageFormat.format("No configuration found for ''{0}''", configuration.value()));
+                    String msg = MessageFormat.format("No configuration found for ''{0}''", configuration.value());
+                    LOGGER.warning(msg);
                 }
             }
         }
@@ -81,10 +82,11 @@ public class ConfigurationProcessor {
                 throw new ConfigurationParserException(msg);
             }
 
-            LOGGER.finest(MessageFormat.format("parsed ''{0}'' to ''{1}'' with ''{3}''",
+            String msg = MessageFormat.format("parsed ''{0}'' to ''{1}'' with ''{2}''",
                     value,
                     parsedValue,
-                    configurationParser.getClass().getTypeName()));
+                    configurationParser.getClass().getTypeName());
+            LOGGER.finest(msg);
 
             return parsedValue;
         }
@@ -118,10 +120,11 @@ public class ConfigurationProcessor {
                 Field field = clazz.getDeclaredField(fieldName);
                 field.setAccessible(true);
                 field.set(object, fieldValue);
-                LOGGER.finest(MessageFormat.format("Set ''{0}''>''{1}'' to ''{2}''",
+                String msg = MessageFormat.format("Set ''{0}''>''{1}'' to ''{2}''",
                         object.getClass().getTypeName(),
                         fieldName,
-                        fieldValue));
+                        fieldValue);
+                LOGGER.finest(msg);
                 return;
             } catch (NoSuchFieldException e) {
                 clazz = clazz.getSuperclass();

@@ -29,8 +29,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/leberKleber/ljcm.git</url>
+        <url>https://github.com/leberKleber/ljcm/tree/master</url>
         <connection>scm:git:https://github.com/leberKleber/ljcm.git</connection>
+        <developerConnection>scm:git:https://github.com/leberKleber/ljcm.git</developerConnection>
     </scm>
 
     <modules>
@@ -43,7 +44,7 @@
 
     <developers>
         <developer>
-            <name>leberkleber</name>
+            <name>leberKleber</name>
             <email>max.marche@live.de</email>
         </developer>
     </developers>
@@ -97,9 +98,30 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <profiles>
         <profile>

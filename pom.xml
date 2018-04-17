@@ -4,7 +4,7 @@
 
     <groupId>io.github.leberkleber.ljcm</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Lightweight Java Configuration Management</name>
@@ -30,7 +30,7 @@
         <url>https://github.com/leberKleber/ljcm/tree/master</url>
         <connection>scm:git:https://github.com/leberKleber/ljcm.git</connection>
         <developerConnection>scm:git:https://github.com/leberKleber/ljcm.git</developerConnection>
-      <tag>ljcm-1.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <modules>

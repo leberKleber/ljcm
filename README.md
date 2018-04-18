@@ -12,7 +12,7 @@ Small, simple and lightweight java framework to manage configurations
 <dependency>
     <groupId>io.github.leberkleber.ljcm</groupId>
     <artifactId>ljcm-minimal</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 ### 2) Annotate Configuration-File
